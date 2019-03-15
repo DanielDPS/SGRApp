@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/business_Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="9dp"
+        android:paddingLeft="82dp"
+        android:text=""
+        android:layout_marginTop="16dp"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@+id/customer_img"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageButton
+        android:id="@+id/btnimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="0dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        app:layout_constraintLeft_toRightOf="@+id/customer_img"
+        app:layout_constraintTop_toBottomOf="@+id/business_Name"
+        app:chipBackgroundColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryText"
+        android:textAlignment="center"
+        android:src="@drawable/ic_camera"
+        />
+
+
+
+    <ImageButton
+        android:id="@+id/btnsave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="4dp"
+        android:text="@{customer.CIdentifier}"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        app:layout_constraintLeft_toRightOf="@+id/customer_img"
+        app:layout_constraintTop_toBottomOf="@+id/btnimage"
+        app:chipBackgroundColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryText"
+        android:textAlignment="center"
+        android:src="@drawable/ic_save_answer"
+        />
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="12dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnsave" />
+
+
+</LinearLayout>

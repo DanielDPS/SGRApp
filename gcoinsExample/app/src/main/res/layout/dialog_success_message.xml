@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:background="#485460"
+    >
+    <TextView
+        android:textSize="25dp"
+        android:layout_marginBottom="25dp"
+        android:textColor="@color/colorPrimaryText"
+        android:text="Se han respondido correctamente todas las preguntas"
+        android:layout_width="match_parent"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="10dp"
+        android:textAlignment="center"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+          android:src="@drawable/ic_sucess_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/gprMain" android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_formats"
+            android:title="@string/menu_item_formats_text"
+            android:icon="@drawable/ic_report"
+            />
+
+    </group>
+    <group android:id="@+id/gprMain2" android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/nav_clients"
+            android:title="@string/menu_item_clients_text"
+            android:icon="@drawable/ic_clients"
+            />
+
+    </group>
+
+    <group android:id="@+id/grpSettings" android:checkableBehavior="single" >
+        <item
+            android:id="@+id/nav_log_out"
+            android:title="@string/menu_item_logout_text"
+            android:checkable="false"
+            android:icon="@drawable/ic_baseline_exit_to_app_24px"
+            />
+    </group>
+
+</menu>

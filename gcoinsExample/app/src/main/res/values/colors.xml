@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#667760</color>
+    <color name="colorPrimaryDark">#374830</color>
+    <color name="colorPrimaryLight">#868fa4</color>
+    <color name="colorAccent">#D81B60</color>
+
+
+    <color name="colorSecondary">#42a5f5</color>
+    <color name="colorSecondaryDark">#0077c2</color>
+    <color name="colorSecondaryLight">#fff</color>
+
+    <color name="colorPrimaryText">#ffffff</color>
+    <color name="colorSecondaryText">#000000</color>
+
+    <color name="colorBackground">#d7e4ec</color>
+    <color name="colorImg">#819C84</color>
+
+
+    <!-- Progress Bar Colors -->
+    <color name="colorProgressBarGreen">#66bb6a</color>
+
+    <color name="colorProgressBarYellow">#ffeb3b</color>
+
+    <color name="colorProgressBarBlue">#2196f3</color>
+
+    <color name="colorProgressBarRed">#f44336</color>
+    <color name="colorTransparent">@android:color/transparent</color>
+</resources>

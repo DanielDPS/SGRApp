@@ -1,0 +1,65 @@
+<resources>
+
+    <!-- Welcome Message -->
+    <string name="welcome_message">Bienvenida</string>
+
+    <!-- Navigation Drawer -->
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    <!-- Navigation Drawer Menu -->
+    <string name="menu_item_payment_text">Pagos</string>
+    <string name="menu_item_shipments_text">Pedidos</string>
+    <string name="menu_item_clients_text">Clientes</string>
+    <string name="menu_item_visit_guide_text">Guia de visita</string>
+    <string name="menu_item_formats_text">Formatos</string>
+    <string name="menu_item_deposit_text">Depósitos</string>
+    <string name="menu_item_cut_text">Cortes</string>
+
+    <string name="menu_item_settings_text">Configuración</string>
+    <string name="menu_item_logout_text">Cerrar Sesión</string>
+
+
+    <!-- Logout Dialog Fragment -->
+    <string name="logout_dialog_title">Confirmación</string>
+    <string name="logout_dialog_message">¿Estás seguro que deseas cerrar sesión?</string>
+    <string name="logout_dialog_ok">Aceptar</string>
+    <string name="logout_dialog_cancel">Cancelar</string>
+
+    <!-- Exit Dialog Fragment -->
+    <string name="exit_dialog_title">Salir</string>
+    <string name="exit_dialog_message">¿Estas seguro que deseas salir de la aplicación?</string>
+    <string name="exit_dialog_ok">Aceptar</string>
+    <string name="exit_dialog_cancel">Cancelar</string>
+
+    <!-- Login -->
+    <string name="login_logo_description">gCovi</string>
+    <string name="login_email_hint">Usuario</string>
+    <string name="login_password_hint">Contraseña</string>
+    <string name="login_button">Iniciar Sesión</string>
+    <string name="forgot_password_label">¿Olvidaste la contraseña?</string>
+    <string name="account_wrong_credentials">El usuario y la contraseña son incorrectos.</string>
+
+
+    <!-- Exceptions -->
+    <string name="unknown_host_exception">No se ha podido establecer una conexión con el servidor</string>
+    <string name="socket_time_out_exception">No se ha podido establecer una conexión con el servidor</string>
+
+    <!-- Toolbar Hints -->
+    <string name="search_hint">Search</string>
+    <string name="loading_anim">Cargando</string>
+
+
+    <!-- Log Out Exceptions -->
+    <string name="account_session_expire">La sesión actual ha expirado</string>
+    <string name="account_session_double">Se ha iniciado sesión en otro dispositivo</string>
+    <string name="app_name">gCoins App</string>
+
+
+    <string-array name="dialog_multi_choice_array">
+        <item>Yes</item>
+        <item>No</item>
+        <item>N.A</item>
+    </string-array>
+
+</resources>

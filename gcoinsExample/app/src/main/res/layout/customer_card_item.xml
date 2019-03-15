@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="customer"
+            type="gcode.baseproject.interactors.db.entities.CustomerEntity" />
+        <variable
+            name="presenter"
+            type="gcode.baseproject.interactors.adapters.CustomerAdapter.CustomersPresenter"/>
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="4dp"
+        android:orientation="horizontal"
+        tools:context=".view.ui.Customer.CustomerFragment"
+        >
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{()-> presenter.OnClickPresenter(customer) }"
+            >
+
+            <ImageView
+                android:id="@+id/customer_img"
+                 android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                  />
+
+            <TextView
+                android:id="@+id/business_Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 android:layout_marginRight="9dp"
+                android:paddingLeft="82dp"
+                 android:text="@{customer.CBusinessName}"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="13dp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@+id/customer_img"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/customer_Identifier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:text="@{customer.CIdentifier}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                app:layout_constraintLeft_toRightOf="@+id/customer_img"
+                app:layout_constraintTop_toBottomOf="@+id/business_Name"
+                app:chipBackgroundColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryText"
+                android:textAlignment="center"
+                />
+
+            <View
+                android:id="@+id/separator"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="12dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/customer_Identifier" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+</layout>

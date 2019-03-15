@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="product"
+            type="gcode.baseproject.domain.model.product.Product"/>
+
+        <variable
+            name="presenter"
+            type="gcode.baseproject.interactors.adapters.ProductAdapter.OnProductClickListener"/>
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="4dp"
+        android:orientation="horizontal"
+          >
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/capa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:enabled="@{product.enabled}"
+             android:onClick="@{()->presenter.onProductClick(product)}"
+              >
+
+            <ImageView
+                android:id="@+id/product_img"
+                android:tint="#5c6454"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_format_add"
+                />
+
+            <TextView
+                android:layout_marginRight="9dp"
+                android:paddingLeft="78dp"
+                android:id="@+id/product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@{product.name}"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="14dp"
+                 android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@+id/product_img"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"/>
+            <TextView
+                android:layout_marginRight="9dp"
+                android:paddingLeft="78dp"
+                android:id="@+id/product_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="36dp"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:text="@{String.valueOf(product.price)}"
+                app:layout_constraintLeft_toRightOf="@+id/product_img"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"/>
+            <TextView
+                android:layout_marginRight="9dp"
+                android:paddingLeft="78dp"
+                android:id="@+id/product_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="56dp"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:text="@{String.valueOf(product.quantity)}"
+                app:layout_constraintLeft_toRightOf="@+id/product_img"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+</layout>
