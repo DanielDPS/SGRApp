@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.appbar.AppBarLayout;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import gcode.baseproject.R;
@@ -20,8 +22,7 @@ public class CustomersDetailFragment extends BaseFragment {
     private CustomersDetailFragmentBinding customersDetailFragmentBinding;
     private  static final String CUSTOMER_ARGS= "customer_args";
     private CustomerEntity customerEntity;
-
-    public static final CustomersDetailFragment newInstance (CustomerEntity customerEntity){
+     public static final CustomersDetailFragment newInstance (CustomerEntity customerEntity){
         CustomersDetailFragment fragment = new CustomersDetailFragment();
         Bundle args= new Bundle();
         args.putSerializable(CUSTOMER_ARGS,customerEntity);
@@ -34,6 +35,8 @@ public class CustomersDetailFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null){
             customerEntity= (CustomerEntity) getArguments().getSerializable(CUSTOMER_ARGS);
+
+
         }
     }
 
@@ -58,6 +61,7 @@ public class CustomersDetailFragment extends BaseFragment {
         customersDetailFragmentBinding.txtNumber1.setText(customerEntity.getCNumber1());
         customersDetailFragmentBinding.txtNumber2.setText(customerEntity.getCNumber2());
         customersDetailFragmentBinding.txtRfc.setText(customerEntity.getCRfc());
+        customersDetailFragmentBinding.txtPermisoCRE.setText(customerEntity.getCCreationPermission());
     }
 
     @NonNull
@@ -72,7 +76,6 @@ public class CustomersDetailFragment extends BaseFragment {
         ToolbarBuilder builder = new ToolbarBuilder
                 .Builder(customersDetailFragmentBinding.toolbar)
                 .withTitle("Detalle ["+customerEntity.getCIdentifier()+"]")
-                .withMenu(R.menu.drawer_menu)
                 .withBackButton(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/edit_question"
+        android:title="Editar"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_save_inspection"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/view_dialog"
+        android:title="Ver"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_view_data"
+        app:showAsAction="always"
+        />
+</menu>

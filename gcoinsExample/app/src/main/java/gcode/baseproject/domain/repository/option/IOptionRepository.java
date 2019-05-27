@@ -8,4 +8,5 @@ import io.reactivex.Single;
 public interface IOptionRepository {
 
     Single<List<OptionEntity>> getOptionByIdQuestion(String id);
+    OptionEntity getOptionEntity(String id );
 }

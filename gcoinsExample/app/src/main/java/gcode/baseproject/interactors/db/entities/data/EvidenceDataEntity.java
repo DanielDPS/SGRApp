@@ -14,7 +14,7 @@ import androidx.room.PrimaryKey;
                 parentColumns = "id",
                 childColumns = "fkquestionData",
                 onDelete = ForeignKey.CASCADE
-        )
+         )
     }
 )
 public class EvidenceDataEntity {

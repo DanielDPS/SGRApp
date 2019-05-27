@@ -22,6 +22,7 @@ public interface IFormatRepository {
     void UpdateFormatDB(FormatEntity formatEntity);
     void DeleteFormatDB(FormatEntity formatEntity);
     List<FormatEntity>  getFormatsDB( );
+    FormatEntity getObjectFormatById(String id);
     Boolean checkIfFormatsExists(String id);
     Boolean checkIfFormatsUpdate(String id,String lastUpdate);
     String getFormatLastUpdate();
@@ -31,6 +32,8 @@ public interface IFormatRepository {
     void UpdateFormatSectionDB(FormatSectionEntity formatSectionEntity);
     Single<List<FormatSectionEntity>>getFomatSectionsDB(String idFormat);
     Boolean checkIfFormatSectionsExists(String id);
+    FormatSectionEntity getObjectSectioById(String id);
+    List<FormatSectionEntity> getListSectionByFkFormat(String fk);
 
     //Question
     void AddQuestionDB(QuestionEntity questionEntity);
@@ -39,7 +42,10 @@ public interface IFormatRepository {
     Single<List<QuestionEntity>>getQuestions();
     Single<List<QuestionEntity>>getQuestionsByIdSection(String id );
     Integer getCountQuestionsByFkSection(String id);
+    List<QuestionEntity> getListQuestionsByFkSection(String fk);
 
     //Option
     void AddOptionDB(OptionEntity optionEntity);
+    void UpdateOptionDB(OptionEntity optionEntity);
+    List<OptionEntity> getOptionsByFKQuestion(String fk);
 }

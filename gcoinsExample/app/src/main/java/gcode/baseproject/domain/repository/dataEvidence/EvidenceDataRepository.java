@@ -22,7 +22,8 @@ public class EvidenceDataRepository implements IEvidenceDataRepository {
         return Completable.fromRunnable(new Runnable() {
             @Override
             public void run() {
-                evidenceDataDao.AddEvidence(evidenceDataEntity);
+
+                    evidenceDataDao.AddEvidence(evidenceDataEntity);
             }
         });
     }
@@ -45,5 +46,40 @@ public class EvidenceDataRepository implements IEvidenceDataRepository {
     @Override
     public Single<List<EvidenceDataEntity>> getEvidenceList(String fk) {
         return evidenceDataDao.getEvidence(fk);
+    }
+
+    @Override
+    public Completable DeleteEvidence(final EvidenceDataEntity evidenceDataEntity) {
+        return Completable.fromRunnable(new Runnable() {
+            @Override
+            public void run() {
+             evidenceDataDao.DeleteEvidence(evidenceDataEntity);
+            }
+        });
+    }
+
+    @Override
+    public Completable UpdateEvidence(final EvidenceDataEntity evidenceDataEntity) {
+        return  Completable.fromRunnable(new Runnable() {
+            @Override
+            public void run() {
+                evidenceDataDao.UpdateEvidence(evidenceDataEntity);
+            }
+        });
+    }
+
+    @Override
+    public List<EvidenceDataEntity> getEvidenceListByFkQuestionData(String fk) {
+        GetListEvidenceByFkQuestionDataAsyncTask task = new GetListEvidenceByFkQuestionDataAsyncTask(evidenceDataDao,fk);
+
+        try {
+            task.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return  task.getList();
+
     }
 }

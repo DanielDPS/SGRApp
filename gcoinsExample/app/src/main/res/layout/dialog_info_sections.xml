@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.appbar.AppBarLayout
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/seller_picture"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/ic_info"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/txtIdentifierInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="IDENTIFICADOR"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                    android:textColor="@color/colorPrimaryText"
+                    app:layout_constraintLeft_toRightOf="@+id/seller_picture"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:background="@color/colorPrimaryText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+                <!-- Creator -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/creator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:id="@+id/creatorIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:src="@drawable/ic_customer"
+                        android:tint="@color/colorIconIMG"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/creatorLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="CLIENTE"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                        app:layout_constraintLeft_toRightOf="@+id/creatorIcon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txtCustomerInfo"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="40dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/roboto"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@+id/creatorIcon"
+                        app:layout_constraintTop_toBottomOf="@+id/creatorLabel" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Folio -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/folio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:id="@+id/folioIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:tint="@color/colorIconIMG"
+                        android:src="@drawable/ic_date"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/folioLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Fecha inicial"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                        app:layout_constraintLeft_toRightOf="@+id/folioIcon"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/txtDateInitialInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/folioLabel"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@+id/folioIcon"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:id="@+id/dateIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:tint="@color/colorIconIMG"
+                        android:src="@drawable/ic_date"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/dateLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Fecha final"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                        app:layout_constraintLeft_toRightOf="@+id/dateIcon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txtEndDateInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/dateLabel"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@+id/dateIcon"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/state01capa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    >
+
+                    <ImageView
+                        android:id="@+id/state01Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:tint="@color/colorIconIMG"
+                        android:src="@drawable/ic_info_outline"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/txtState01Info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorPrimaryText"
+                        app:chipBackgroundColor="#e15f41"
+                        app:layout_constraintBottom_toBottomOf="@+id/state01Icon"
+                        app:layout_constraintLeft_toRightOf="@+id/state01Icon" />
+
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/state02capa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    >
+
+                    <ImageView
+                        android:id="@+id/state02Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:tint="@color/colorIconIMG"
+                        android:src="@drawable/ic_info_outline"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/txtState02Info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorPrimaryText"
+                        app:chipBackgroundColor="#e15f41"
+                        app:layout_constraintBottom_toBottomOf="@+id/state02Icon"
+                        app:layout_constraintLeft_toRightOf="@+id/state02Icon" />
+
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

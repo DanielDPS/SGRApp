@@ -5,6 +5,7 @@ import android.app.Application;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import gcode.baseproject.domain.repository.option.IOptionRepository;
 import gcode.baseproject.domain.repository.option.OptionRepository;
@@ -27,10 +28,22 @@ public class OptionViewModel  extends BaseNetworkViewModel {
         iOptionRepository = new OptionRepository();
     }
 
+    public  OptionEntity getOptionById(String id){
+        return iOptionRepository.getOptionEntity(id);
+    }
+    public void ClearOptions (LifecycleOwner owner){
+        if (mgetOptions != null){
+            mgetOptions.removeObservers(owner);
+            mgetOptions =null;
+        }
+    }
 
-    public void LoadQuestionsByIdQuestion(String id){
+    public void LoadOptionsByIdQuestion(String id){
 
-        if (mgetOptions.getValue() == null ){
+        if (mgetOptions == null ){
+
+            mgetOptions = new MutableLiveData<>();
+        }
             Single<List<OptionEntity>> options = iOptionRepository.getOptionByIdQuestion(id)
                     .map(new Function<List<OptionEntity>, List<OptionEntity>>() {
                         @Override
@@ -41,7 +54,7 @@ public class OptionViewModel  extends BaseNetworkViewModel {
             options.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(getObserverOptions());
-        }
+
     }
     private DisposableSingleObserver<List<OptionEntity>> getObserverOptions() {
         return new DisposableSingleObserver<List<OptionEntity>>() {

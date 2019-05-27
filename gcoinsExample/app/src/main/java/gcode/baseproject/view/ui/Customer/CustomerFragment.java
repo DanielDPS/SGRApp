@@ -1,10 +1,14 @@
 package gcode.baseproject.view.ui.Customer;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -18,6 +22,7 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -36,6 +41,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
  import gcode.baseproject.R;
  import gcode.baseproject.databinding.CustomersFragmentBinding;
+import gcode.baseproject.interactors.MyContext;
 import gcode.baseproject.interactors.adapters.CustomerAdapter;
 import gcode.baseproject.interactors.db.entities.CustomerEntity;
 import gcode.baseproject.interactors.progress.ValidatingProgress;
@@ -47,6 +53,7 @@ import gcode.baseproject.view.viewmodel.Customer.CustomerViewModel;
 import gcode.baseproject.view.widgets.toolbar.BaseToolbarBuilder;
  import gcode.baseproject.view.widgets.toolbar.ToolbarBuilder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableCompletableObserver;
 import io.reactivex.observers.TestObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.http.GET;
@@ -56,6 +63,9 @@ public class CustomerFragment extends BaseFragment implements CustomerAdapter.Cu
     private CustomersFragmentBinding mCustomerBinding;
     private  CustomerAdapter customerAdapter;
     private  List<CustomerEntity >tempentities;
+    private  CustomerFragment fragment = this;
+    private ValidatingProgress validatingProgress;
+    private ProgressDialog dialog;
       public  static CustomerFragment getInstance() {
 
           return new CustomerFragment();
@@ -82,40 +92,54 @@ public class CustomerFragment extends BaseFragment implements CustomerAdapter.Cu
         super.onViewCreated(view, savedInstanceState);
     }
 
-    void RefreshAll(){
-        ValidatingProgress validatingProgress = new ValidatingProgress(getContext(),"Clientes","Sincronizando....");
-        validatingProgress.ShowProgressDialog();
-        validatingProgress.Progress(mCustomerBinding.customersRecycler,getContext(),new CustomerAdapter(customerViewModel.listCustomersDB(),this));
-    }
+
     void Refresh(){
-        mCustomerBinding.customersRecycler.setHasFixedSize(true);
-        mCustomerBinding.customersRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        mCustomerBinding.customersRecycler.setAdapter(new CustomerAdapter(customerViewModel.listCustomersDB(),this));
+          if (customerViewModel.listCustomersDB().size() ==0){
+              mCustomerBinding.nodata.setVisibility(View.VISIBLE);
+
+          }else {
+              mCustomerBinding.nodata.setVisibility(View.GONE);
+              mCustomerBinding.customersRecycler.setHasFixedSize(true);
+              mCustomerBinding.customersRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+              mCustomerBinding.customersRecycler.setAdapter(new CustomerAdapter(customerViewModel.listCustomersDB(),this,fragment));
+          }
+
+
     }
 
-    void RefreshFragment(){
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .detach(CustomerFragment.getInstance())
-                .attach(new CustomerFragment())
-                .commit();
+    private  void SyncCustomers(){
+          dialog = new ProgressDialog(getContext(), AlertDialog.THEME_HOLO_DARK);
+          dialog.setMessage("Sincronizando clientes...");
+          dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+          dialog.setIndeterminate(false);
+          dialog.setCancelable(false);
+          dialog.show();
+          customerViewModel.UpdateData()
+                  .subscribeOn(Schedulers.io())
+                  .observeOn(AndroidSchedulers.mainThread())
+                  .subscribe(new DisposableCompletableObserver() {
+                      @Override
+                      public void onComplete() {
+                          dialog.dismiss();
+                          Refresh();
+                      }
+
+                      @Override
+                      public void onError(Throwable e) {
+                         dialog.dismiss();
+                      }
+                  });
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        UpdateAll();
-
-    }
-    private  void UpdateAll(){
-        if (customerViewModel.listCustomersDB().size() > 0){
-            RefreshFragment();
+        if (customerViewModel.listCustomersDB().size() >0){
             Refresh();
-        }else{
-            customerViewModel.UpdateData();
-            RefreshFragment();
-            Toast.makeText(getContext(),"No existen registros, favor de presionar el boton para sincronizar",Toast.LENGTH_LONG).show();
         }
-
+        else {
+            SyncCustomers();
+        }
     }
     @NonNull
     @Override
@@ -135,15 +159,12 @@ public class CustomerFragment extends BaseFragment implements CustomerAdapter.Cu
         listeners.add(new MenuItem.OnMenuItemClickListener(){
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                RefreshFragment();
-                RefreshAll();
-                if (customerViewModel.listCustomersDB().size() > 0){
-                    customerViewModel.UpdateData();
-                    RefreshFragment();
-                    RefreshAll();
+                ConnectivityManager connectivityManager =(ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+                if (networkInfo !=null && networkInfo.isConnected()){
+                    SyncCustomers();
                 }else {
-                    RefreshFragment();
-                    RefreshAll();
+                    Toast.makeText(getContext(), "Sin conexión a internet, verifique su conexión", Toast.LENGTH_SHORT).show();
                 }
                 return false;
             }

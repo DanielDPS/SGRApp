@@ -31,4 +31,7 @@ public interface FormatDao {
 
     @Query("SELECT COUNT(*) FROM tblformat WHERE id = :id AND edited < :lastUpdate")
     Integer checkIfFormatsShouldUpdate(String id,String lastUpdate);
+
+    @Query("SELECT * FROM tblformat WHERE id=:idformat")
+    FormatEntity getObjectFormatById(String idformat);
 }

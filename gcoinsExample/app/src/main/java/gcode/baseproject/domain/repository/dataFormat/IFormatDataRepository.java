@@ -8,9 +8,14 @@ import io.reactivex.Single;
 
 public interface IFormatDataRepository {
 
-    void  AddFormatData(FormatDataEntity formatDataEntity);
-    void UpdateFormatData(FormatDataEntity formatDataEntity);
+    Completable  AddFormatData(FormatDataEntity formatDataEntity);
+    Completable UpdateFormatData(FormatDataEntity formatDataEntity);
+    Completable DeleteFormatData(FormatDataEntity formatDataEntity);
     Single<List<FormatDataEntity>> getAllFormatsData();
     Boolean getCount();
     Boolean getIdFormatData( );
+    Integer checkIfExistsObject(String fkformat,String fkCustomer,String identifier);
+    FormatDataEntity getFormatDataById(String id);
+    void UpdateFormat(int state01,int state02,String id);
+
  }

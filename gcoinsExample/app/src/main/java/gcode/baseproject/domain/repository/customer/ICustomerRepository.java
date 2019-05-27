@@ -5,6 +5,7 @@ import java.util.List;
 
 import androidx.lifecycle.LiveData;
 import gcode.baseproject.domain.model.customer.Customer;
+import gcode.baseproject.domain.model.customer.CustomerIdentifierResponse;
 import gcode.baseproject.interactors.db.entities.CustomerEntity;
 import io.reactivex.Completable;
 import io.reactivex.Single;
@@ -23,4 +24,5 @@ public interface ICustomerRepository {
     String getIdCustomerByName(String name);
     Single<String> getIdentifier(String token,String id);
     CustomerEntity getCustomerByID(String id);
+    CustomerIdentifierResponse GetIdentifierAsync(String token,String idCustomer);
 }

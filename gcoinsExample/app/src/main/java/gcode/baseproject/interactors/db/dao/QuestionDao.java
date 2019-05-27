@@ -28,5 +28,7 @@ public interface QuestionDao {
     Integer getCountByFkSection(String fkSection);
     @Query("SELECT id FROM tblQuestion WHERE fksection= :fk")
     String getIdQuestionByFkSection(String fk);
+    @Query("SELECT * FROM tblQuestion WHERE fksection =:id")
+    List<QuestionEntity> getQuestionsByIdSection(String id);
 
 }

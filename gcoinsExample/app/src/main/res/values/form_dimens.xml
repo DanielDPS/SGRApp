@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="visit_guide_ic_margin">16dp</dimen>
+
+    <dimen name="visit_guide_add_left_margin_dimen">16dp</dimen>
+    <dimen name="visit_guide_add_right_margin_dimen">16dp</dimen>
+    <dimen name="visit_guide_add_top_margin_dimen">16dp</dimen>
+    <dimen name="visit_guide_add_bottom_margin_dimen">16dp</dimen>
+
+
+    <dimen name="visit_guide_row_item_full_margin">16dp</dimen>
+    <dimen name="visit_guide_row_item_half_margin">8dp</dimen>
+    <dimen name="visit_guide_row_item_quarter_margin">4dp</dimen>
+
+
+</resources>

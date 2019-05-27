@@ -15,6 +15,7 @@ import gcode.baseproject.interactors.db.dao.OptionDao;
 import gcode.baseproject.interactors.db.dao.QuestionDao;
 import gcode.baseproject.interactors.db.dao.TokenDao;
 import gcode.baseproject.interactors.db.dao.data.EvidenceDataDao;
+import gcode.baseproject.interactors.db.dao.data.FileDataDao;
 import gcode.baseproject.interactors.db.dao.data.FormatDataDao;
 import gcode.baseproject.interactors.db.dao.data.QuestionDataDao;
 import gcode.baseproject.interactors.db.dao.data.SectionDataDao;
@@ -26,6 +27,7 @@ import gcode.baseproject.interactors.db.entities.OptionEntity;
 import gcode.baseproject.interactors.db.entities.QuestionEntity;
 import gcode.baseproject.interactors.db.entities.TokenEntity;
 import gcode.baseproject.interactors.db.entities.data.EvidenceDataEntity;
+import gcode.baseproject.interactors.db.entities.data.FileDataEntity;
 import gcode.baseproject.interactors.db.entities.data.QuestionDataEntity;
 import gcode.baseproject.interactors.db.entities.data.SectionDataEntity;
 
@@ -33,7 +35,7 @@ import gcode.baseproject.interactors.db.entities.data.SectionDataEntity;
         entities = {
         TokenEntity.class,CustomerEntity.class,
                 FormatEntity.class, FormatSectionEntity.class, QuestionEntity.class,
-                OptionEntity.class, SectionDataEntity.class, FormatDataEntity.class, EvidenceDataEntity.class, QuestionDataEntity.class},
+                OptionEntity.class, SectionDataEntity.class, FormatDataEntity.class, EvidenceDataEntity.class, QuestionDataEntity.class, FileDataEntity.class},
         version = 1,
         exportSchema = false)
 
@@ -41,7 +43,7 @@ public abstract class ApplicationDatabase extends RoomDatabase {
 
     private static ApplicationDatabase mInstance;
 
-    private static final String DB_NAME = "gCoins2";
+    private static final String DB_NAME = "dbSGR";
 
     public static ApplicationDatabase getDatabase() {
         return mInstance;
@@ -68,4 +70,5 @@ public abstract class ApplicationDatabase extends RoomDatabase {
     public abstract FormatDataDao getFormatDataDao();
     public abstract EvidenceDataDao getEvidenceDataDao();
     public  abstract QuestionDataDao getQuestionDataDao();
+    public  abstract FileDataDao getFileDataDao();
 }

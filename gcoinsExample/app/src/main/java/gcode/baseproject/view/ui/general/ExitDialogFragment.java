@@ -4,9 +4,15 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+
+import com.google.android.material.button.MaterialButton;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import gcode.baseproject.R;
+import gcode.baseproject.interactors.dialogs.CreateDialog;
 
 public class ExitDialogFragment extends DialogFragment {
 
@@ -21,14 +27,36 @@ public class ExitDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.exit_dialog_title)
-                .setMessage(R.string.exit_dialog_message)
-                .setPositiveButton(R.string.exit_dialog_ok, new DialogInterface.OnClickListener() {
+
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View view = inflater.inflate(R.layout.dialog_logout, null);
+        MaterialButton btnLeave = view.findViewById(R.id.btnLeave);
+        MaterialButton btnCancel = view.findViewById(R.id.btnCancelLogout);
+        CreateDialog   myDialog = new CreateDialog();
+        final android.app.AlertDialog.Builder builder = myDialog.openDialog2(getContext(), view);
+        builder.setTitle("Salir");
+        builder.setIcon(R.drawable.ic_exit);
+        builder.setMessage(R.string.exit_dialog_message);
+        final android.app.AlertDialog alert = builder.create();
+        btnLeave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onExitConfirm();
+                alert.dismiss();
+            }
+        });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onExitCancel();
+                alert.dismiss();
+            }
+        });
+               /* .setPositiveButton(R.string.exit_dialog_ok, new DialogInterface.OnClickListener() {
+
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        mListener.onExitConfirm();
-                        dialogInterface.dismiss();
+
                     }
                 })
                 .setNegativeButton(R.string.logout_dialog_cancel, new DialogInterface.OnClickListener() {
@@ -37,8 +65,9 @@ public class ExitDialogFragment extends DialogFragment {
                         mListener.onExitCancel();
                         dialogInterface.dismiss();
                     }
-                });
-        return alertDialog.create();
+                });*/
+
+        return alert;
     }
 
     @Override

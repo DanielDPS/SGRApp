@@ -84,7 +84,7 @@
                     android:layout_height="100dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="32dp"
-                    android:src="@drawable/logosaganor"/>
+                    android:src="@drawable/saganor_logo"/>
 
                 <TextView
                     android:id="@+id/usernameLabel"
@@ -99,7 +99,7 @@
 
                 <EditText
                     android:id="@+id/username"
-                    style="@style/EditTextTheme"
+                    style="@style/edittextTheme"
                     android:inputType="textEmailAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
 
                 <EditText
                     android:id="@+id/password"
-                    style="@style/EditTextTheme"
+                    style="@style/edittextTheme"
                     android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -135,21 +135,20 @@
                     android:layout_marginRight="16dp"
                     android:text="@={credentialsViewModel.password}"
                     android:enabled="@{!loadingViewModel.isLoading}"
-                    />
+                    />sssss
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/signIn"
-                    style="@style/Widget.MaterialComponents.Button"
-                    android:layout_width="match_parent"
+                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorBackground"
+                    android:textColor="@color/colorPrimaryText"
                     android:layout_below="@+id/password"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginRight="16dp"
                     android:enabled="@{!loadingViewModel.isLoading}"
                     android:onClick="@{presenter::onSignInClick}"
-                    android:text="@string/login_button"
+                      android:text="@string/login_button"
                     android:textAllCaps="true" />
 
                 <ProgressBar

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/capainfo"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/imgInfo2"
+            android:textAlignment="center"
+            android:tint="@color/colorPrimaryDark"
+            android:src="@drawable/ic_sucess_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/capainfo"
+        android:id="@+id/capainfo2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/txtInfo2"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:fontFamily="@font/roboto"
+             android:textAlignment="center"
+            android:text="Has respondido todas las
+ preguntas correctamente..!!"
+            android:layout_marginTop="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_below="@+id/capainfo2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnShowInfo1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SALIR"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnShowInfo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editar respuestas"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

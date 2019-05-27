@@ -7,6 +7,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+import gcode.baseproject.domain.model.formatSection.FormatSection;
 import gcode.baseproject.interactors.db.entities.FormatSectionEntity;
 import io.reactivex.Single;
 
@@ -23,4 +24,8 @@ public interface FormatSectionDao {
     Single<List<FormatSectionEntity >> getFormatSections(String idformat);
     @Query("SELECT COUNT(*)  FROM tblFormatSection WHERE id = :id")
     Integer getCountFormatSections(String id);
+    @Query("SELECT * FROM tblFormatSection WHERE id = :idSection")
+    FormatSectionEntity getObejctSectionById(String idSection);
+    @Query("SELECT * FROM tblformatsection WHERE fkformat =:fkFormat")
+    List<FormatSectionEntity> getListSectionsByFkFormat(String fkFormat);
 }

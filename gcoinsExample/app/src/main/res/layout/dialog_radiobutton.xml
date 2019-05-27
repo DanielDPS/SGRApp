@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
+
+
+
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/capaGeneral"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+    <LinearLayout
+        android:id="@+id/cap1"
+         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
@@ -14,87 +30,57 @@
            android:id="@+id/radioGroup"
            android:layout_width="match_parent"
            android:layout_height="match_parent">
-
-
        </RadioGroup>
 
     </LinearLayout>
+
     <LinearLayout
-        android:id="@+id/images"
+        android:id="@+id/cap2"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="4dp"
-        android:gravity="right"
-        >
-        <ImageButton
-            android:id="@+id/photoOption"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_camera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-
-        <ImageButton
-
-            android:id="@+id/galleryOption"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_gallery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <ImageButton
-
-            android:id="@+id/goGalleryButton"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="120dp">
-
+        android:paddingLeft="22dp"
+        android:paddingRight="6dp"
+        android:layout_below="@+id/cap1">
             <EditText
-                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                 android:id="@+id/txtObservaciones"
+                android:id="@+id/txtObservaciones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:theme="@style/edittextTheme"
                 android:visibility="gone"
                 />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_below="@+id/cap2">
 
 
-        <LinearLayout
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            />
 
-            <Button
-                android:text="Guardar"
-                android:width="190dp"
-                android:layout_marginRight="1dp"
-                android:id="@+id/btnSaveRD"
-                android:textColor="@color/colorPrimaryText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Button
-                android:text="Cancelar"
-                android:id="@+id/btnCancelRD"
-                android:width="190dp"
-                android:layout_marginLeft="1dp"
-                android:textColor="@color/colorPrimaryText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            />
+    </LinearLayout>
 
-        </LinearLayout>
 
     </LinearLayout>
 

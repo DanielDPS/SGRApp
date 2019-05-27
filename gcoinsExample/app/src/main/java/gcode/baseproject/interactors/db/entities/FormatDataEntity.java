@@ -1,6 +1,11 @@
 package gcode.baseproject.interactors.db.entities;
 
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+
+import com.itextpdf.text.BaseColor;
+
 import java.io.BufferedReader;
 import java.io.Serializable;
 
@@ -48,10 +53,84 @@ public class FormatDataEntity implements Serializable {
     private  int Estado01;
     @ColumnInfo(name = "estado02")
     private  int Estado02;
+    @ColumnInfo (name ="initialDate")
+    private  String InitialDate;
+    @ColumnInfo(name = "endDate")
+    private  String EndDate;
+    @ColumnInfo(name = "created")
+    private  String Created;
+
+    public String getCreated() {
+        return Created;
+    }
+
+    public void setCreated(String created) {
+        Created = created;
+    }
+
+    @Ignore
+    private CustomerEntity CustomerObject;
     @Ignore
     private  String textState01;
     @Ignore
     private  String textState02;
+    @Ignore int colorState01;
+    @Ignore int  colorState02;
+
+
+
+
+    public int getColorState01() {
+        switch (Estado01){
+            case 0:
+                colorState01 = Color.parseColor("#e15f41");
+                break;
+            case 1:
+                colorState01 =Color.parseColor("#00b894");
+                break;
+        }
+        return  colorState01;
+    }
+
+    public int getColorState02() {
+        switch (Estado02)
+        {
+            case 0:
+                colorState02 = Color.parseColor("#e15f41");
+                break;
+            case 1:
+                colorState02 = Color.parseColor("#fdcb6e");
+                break;
+            case 2 :
+                colorState02 =  Color.parseColor("#00b894");
+                break;
+        }
+        return  colorState02;
+    }
+
+    public String getInitialDate() {
+        return InitialDate;
+    }
+
+    public void setInitialDate(String initialDate) {
+        InitialDate = initialDate;
+    }
+
+    public String getEndDate() {
+        return EndDate;
+    }
+
+    public void setEndDate(String endDate) {
+        EndDate = endDate;
+    }
+
+    public CustomerEntity getCustomerObject() {
+        return CustomerObject;
+    }
+
+    public void setCustomerObject(CustomerEntity customerObject) {
+        CustomerObject = customerObject;
+    }
 
     public String getTextState01() {
         switch (Estado01){
@@ -81,7 +160,6 @@ public class FormatDataEntity implements Serializable {
         }
         return textState02;
     }
-
 
 
     public String getIdentifier() {

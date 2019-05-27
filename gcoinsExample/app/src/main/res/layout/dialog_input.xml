@@ -16,36 +16,8 @@
             android:id="@+id/txtAnswer"
             android:hint="Escriba una respuesta"
             android:layout_width="match_parent"
-            android:layout_height="110dp" />
+            android:layout_height="80dp" />
 
-
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_marginTop="110dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:text="Guardar"
-            android:width="200dp"
-            android:layout_marginRight="1dp"
-            android:id="@+id/btnSaveINPUT"
-            android:textColor="@color/colorPrimaryText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:text="Cancelar"
-            android:id="@+id/btnCancelINPUT"
-            android:width="200dp"
-            android:layout_marginLeft="1dp"
-            android:textColor="@color/colorPrimaryText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

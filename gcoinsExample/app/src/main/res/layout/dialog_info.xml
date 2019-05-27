@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/capainfo"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/imgInfo"
+            android:textAlignment="center"
+            android:tint="@color/colorSecondaryDark"
+            android:src="@drawable/ic_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/capainfo"
+        android:id="@+id/capainfo2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/txtInfo"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:fontFamily="@font/roboto"
+            android:textDirection="rtl"
+            android:textAlignment="center"
+            android:text="Aun no se han sincronizado clientes
+ presiona aceptar para sincronizar"
+            android:layout_marginTop="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_below="@+id/capainfo2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        >
+
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnShowInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aceptar"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

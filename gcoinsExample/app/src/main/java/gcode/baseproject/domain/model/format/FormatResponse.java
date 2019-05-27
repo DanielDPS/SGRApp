@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import gcode.baseproject.domain.model.formatSection.FormatSection;
 
 public class FormatResponse {
 

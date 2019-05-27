@@ -2,21 +2,19 @@ package gcode.baseproject.view.viewmodel.dataEvidence;
 
 import android.app.Application;
 import android.util.Log;
-
 import java.util.List;
-
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import gcode.baseproject.domain.repository.dataEvidence.EvidenceDataRepository;
 import gcode.baseproject.domain.repository.dataEvidence.IEvidenceDataRepository;
 import gcode.baseproject.interactors.db.entities.data.EvidenceDataEntity;
 import gcode.baseproject.view.viewmodel.general.BaseNetworkViewModel;
+import io.reactivex.Completable;
 import io.reactivex.Single;
-import io.reactivex.SingleSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableSingleObserver;
-import io.reactivex.observers.TestObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class EvidenceDataViewModel extends BaseNetworkViewModel {
@@ -27,22 +25,37 @@ public class EvidenceDataViewModel extends BaseNetworkViewModel {
         super(application);
         iEvidenceDataRepository = new EvidenceDataRepository();
     }
-
-    public void AddEvidence(EvidenceDataEntity evidenceDataEntity){
-        TestObserver testObserver  = new TestObserver();
-        iEvidenceDataRepository.addEvidenceData(evidenceDataEntity)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(testObserver);
-        testObserver.assertNoErrors();
+    public  Completable UpdateEvidence(EvidenceDataEntity evidenceDataEntity){
+        return  iEvidenceDataRepository.UpdateEvidence(evidenceDataEntity);
     }
+
+    public  List<EvidenceDataEntity> getListEvidenceByFkQuestionData(String fkQuestionData){
+        return  iEvidenceDataRepository.getEvidenceListByFkQuestionData(fkQuestionData);
+    }
+
+    public Completable AddEvidence(EvidenceDataEntity evidenceDataEntity){
+       return   iEvidenceDataRepository.addEvidenceData(evidenceDataEntity);
+    }
+    public Completable DeleteEvidence(EvidenceDataEntity evidenceDataEntity){
+        return iEvidenceDataRepository.DeleteEvidence(evidenceDataEntity);
+    }
+
+
 
     public Integer getCountEvidence (String fk){
 
         return iEvidenceDataRepository.getCountEvidenceData(fk);
     }
+    public void ClearEvidenceList(LifecycleOwner owner){
+        if (getDataEvidence != null){
+            getDataEvidence.removeObservers(owner);
+            getDataEvidence = null;
+        }
+    }
     public void LoadEvidenceList(String id){
-        if (getDataEvidence.getValue() == null){
+        if (getDataEvidence == null){
+            getDataEvidence = new MutableLiveData<>();
+        }
            Single<List<EvidenceDataEntity>> list =  iEvidenceDataRepository.getEvidenceList(id)
                    .map(new Function<List<EvidenceDataEntity>, List<EvidenceDataEntity>>() {
                        @Override
@@ -54,7 +67,7 @@ public class EvidenceDataViewModel extends BaseNetworkViewModel {
                    .observeOn(AndroidSchedulers.mainThread())
                    .subscribe(getDisposableEvidence());
 
-        }
+
     }
 
 

@@ -9,16 +9,21 @@ public class GetQuestionDataObjectAyncTask extends AsyncTask<Void,Void, Question
     private QuestionDataDao questionDataDao;
     private  QuestionDataEntity questionDataEntity;
     private  String fkQuestion;
-    public GetQuestionDataObjectAyncTask(QuestionDataDao dao , String fk){
+    private  String fkd;
+    private  String fks;
+    public GetQuestionDataObjectAyncTask(QuestionDataDao dao , String fk,String fkd,String fks){
         this.questionDataDao= dao;
         this.fkQuestion= fk;
+        this.fkd= fkd;
+        this.fks= fks;
+
     }
     public  QuestionDataEntity getQuestionDataEntity(){
         return this.questionDataEntity;
     }
     @Override
     protected QuestionDataEntity doInBackground(Void... voids) {
-        this.questionDataEntity = this.questionDataDao.getQuestionDataObejct(this.fkQuestion);
+        this.questionDataEntity = this.questionDataDao.getQuestionDataObejct(this.fkQuestion,this.fkd,this.fks);
         return this.questionDataEntity;
     }
 }

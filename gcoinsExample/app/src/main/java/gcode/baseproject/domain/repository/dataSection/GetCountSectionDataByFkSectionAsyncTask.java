@@ -9,9 +9,11 @@ public class GetCountSectionDataByFkSectionAsyncTask extends AsyncTask<Void,Void
     private SectionDataDao sectionDataDao;
     private  Integer CountSectionData;
     private  String id;
-    public  GetCountSectionDataByFkSectionAsyncTask(SectionDataDao dao,String fk){
+    private  String idS;
+    public  GetCountSectionDataByFkSectionAsyncTask(SectionDataDao dao,String fk,String ids){
         this.sectionDataDao = dao;
         this.id=fk;
+        this.idS = ids;
     }
     public  Integer getCountSectionData(){
         return this.CountSectionData;
@@ -19,7 +21,7 @@ public class GetCountSectionDataByFkSectionAsyncTask extends AsyncTask<Void,Void
 
     @Override
     protected Integer doInBackground(Void... voids) {
-        this.CountSectionData = this.sectionDataDao.getCountSectionDataByFkSection(this.id);
+        this.CountSectionData = this.sectionDataDao.getCountSD(this.id,this.idS);
         return this.CountSectionData;
     }
 }

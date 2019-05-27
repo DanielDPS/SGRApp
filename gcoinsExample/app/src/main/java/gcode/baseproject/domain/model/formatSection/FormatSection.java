@@ -20,6 +20,16 @@ public class FormatSection {
     private  String IsMultipleReference;
     @SerializedName("cmodificacion")
     private String cEdited ;
+    @SerializedName("cimagen")
+    private  String cImage;
+
+    public String getcImage() {
+        return cImage;
+    }
+
+    public void setcImage(String cImage) {
+        this.cImage = cImage;
+    }
 
     public String getcEdited() {
         return cEdited;

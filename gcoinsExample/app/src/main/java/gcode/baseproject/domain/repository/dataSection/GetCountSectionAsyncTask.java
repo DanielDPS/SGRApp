@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 
 import gcode.baseproject.interactors.db.dao.data.SectionDataDao;
 
-public class GetCountSectionAsyncTask extends AsyncTask<Void,Void,Boolean> {
+public class GetCountSectionAsyncTask extends AsyncTask<Void,Void,Integer> {
 
 
     private SectionDataDao sectionDataDaoAT;
@@ -21,9 +21,9 @@ public class GetCountSectionAsyncTask extends AsyncTask<Void,Void,Boolean> {
     }
 
     @Override
-    protected Boolean doInBackground(Void... voids) {
+    protected Integer doInBackground(Void... voids) {
         count =this.sectionDataDaoAT.getCountSectionData(this.idseciton,this.folio);
-        return count>0;
+        return count;
     }
 
 

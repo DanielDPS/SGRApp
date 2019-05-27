@@ -12,11 +12,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"/>
+
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="parallax"
+                    app:layout_scrollFlags="scroll|enterAlways"/>
+
+
 
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -24,14 +29,13 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+             app:layout_behavior="@string/appbar_scrolling_view_behavior">
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                >
 
                 <!-- Folio -->
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,32 +53,21 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
-                        android:tint="@color/colorImg"
+                        android:tint="@color/colorIconIMG"
                         android:src="@drawable/ic_customer_business_name"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:layout_marginRight="9dp"
-                        android:paddingLeft="58dp"
-                        android:id="@+id/txtbusinessName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="16dp"
-                        android:text="Estacion de servicio 1"
-                        android:textSize="14dp"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                        app:layout_constraintLeft_toRightOf="@+id/imgbusinessName"
-                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/lblname"
                         android:textSize="13dp"
+                        android:fontFamily="@font/roboto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="16dp"
                         android:text="Razón Social"
                         android:textColor="@color/colorPrimary"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -82,8 +75,28 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
 
+                    <TextView
+                        android:fontFamily="@font/roboto"
+                        android:layout_marginRight="9dp"
+                        android:paddingLeft="58dp"
+                        android:id="@+id/txtbusinessName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="35dp"
+                        android:text="Estacion de servicio 1"
+                        android:textSize="14dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        app:layout_constraintLeft_toRightOf="@+id/imgbusinessName"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/date"
@@ -100,7 +113,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
-                        android:tint="@color/colorImg"
+                        android:tint="@color/colorIconIMG"
                         android:src="@drawable/ic_customer_activity"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -110,9 +123,10 @@
                         android:layout_marginRight="9dp"
                         android:paddingLeft="58dp"
                         android:id="@+id/txtActivity"
+                        android:fontFamily="@font/roboto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="35dp"
                         android:layout_marginLeft="16dp"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:text="Gasolinera"
@@ -124,8 +138,9 @@
                         android:textSize="13dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="13dp"
+                        android:fontFamily="@font/roboto"
+                        android:layout_marginTop="16dp"
                         android:text="Actividad"
                         android:textColor="@color/colorPrimary"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -151,7 +166,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
-                        android:tint="@color/colorImg"
+                        android:tint="@color/colorIconIMG"
                         android:src="@drawable/ic_customer_identifier"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -159,11 +174,12 @@
 
                     <TextView
                         android:layout_marginRight="9dp"
+                        android:fontFamily="@font/roboto"
                         android:paddingLeft="58dp"
                         android:id="@+id/txtIdentifier"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="35dp"
                         android:layout_marginLeft="16dp"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:text="E0001"
@@ -175,13 +191,71 @@
                         android:textSize="13dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="13dp"
+                        android:fontFamily="@font/roboto"
+                        android:layout_marginTop="16dp"
                         android:text="Identificación de la instlación"
                         android:textColor="@color/colorPrimary"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         app:layout_constraintLeft_toRightOf="@+id/imgIdentifier"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- PERMISO CRE -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/creCapa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:id="@+id/imgCRE"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:tint="@color/colorIconIMG"
+                        android:src="@drawable/ic_customer_identifier"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/lblCRE"
+                        android:textSize="13dp"
+                        android:fontFamily="@font/roboto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Permiso de la CRE"
+                        android:textColor="@color/colorPrimary"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        app:layout_constraintLeft_toRightOf="@+id/imgCRE"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:fontFamily="@font/roboto"
+                        android:layout_marginRight="9dp"
+                        android:paddingLeft="58dp"
+                        android:id="@+id/txtPermisoCRE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="35dp"
+                        android:text="Permiso CRE"
+                        android:textSize="14dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        app:layout_constraintLeft_toRightOf="@+id/imgCRE"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -204,20 +278,22 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
                         android:src="@drawable/ic_customer_direction"
-                        android:tint="@color/colorImg"
+                        android:tint="@color/colorIconIMG"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:layout_marginRight="9dp"
+                        android:layout_marginRight="5dp"
                         android:paddingLeft="58dp"
                         android:id="@+id/txtDirection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="35dp"
                         android:layout_marginLeft="16dp"
                         android:textSize="14dp"
+                        android:fontFamily="@font/roboto"
+
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:text="Carreterra Hermosillo-Ures No.102121ddddddddd212112121221212121212121dfvcccddd"
                         app:layout_constraintTop_toTopOf="parent"
@@ -230,8 +306,9 @@
                         android:textSize="13dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="72dp"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/roboto"
                         android:text="Ubicación de la instalación"
                         android:textColor="@color/colorPrimary"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -256,7 +333,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
-                        android:tint="@color/colorImg"
+                        android:tint="@color/colorIconIMG"
                         android:src="@drawable/ic_customer_entity2"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -268,21 +345,24 @@
                         android:id="@+id/txtEntity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="35dp"
                         android:layout_marginLeft="16dp"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:text="Sonora"
                         android:textSize="14dp"
                         app:layout_constraintTop_toTopOf="parent"
+                        android:fontFamily="@font/roboto"
                         app:layout_constraintLeft_toRightOf="@+id/imgEntity"
                         />
                     <TextView
                         android:textSize="13dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="16dp"
                         android:text="Entidad Federativa"
+                        android:fontFamily="@font/roboto"
+
                         android:textColor="@color/colorPrimary"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         app:layout_constraintLeft_toRightOf="@+id/imgEntity"
@@ -308,7 +388,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
                         android:src="@drawable/ic_customer_mail"
-                        android:tint="@color/colorImg"
+                        android:tint="@color/colorIconIMG"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -319,7 +399,8 @@
                         android:id="@+id/txtMail1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="35dp"
+                        android:fontFamily="@font/roboto"
                         android:layout_marginLeft="16dp"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:text="estacion@gasolinera.com"
@@ -331,8 +412,9 @@
                         android:textSize="13dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/roboto"
                         android:text="Correo Electronico 1"
                         android:textColor="@color/colorPrimary"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -358,7 +440,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
                         android:src="@drawable/ic_customer_mail"
-                        android:tint="@color/colorImg"
+                        android:tint="@color/colorIconIMG"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -369,8 +451,9 @@
                         android:id="@+id/txtMail2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="35dp"
                         android:layout_marginLeft="16dp"
+                        android:fontFamily="@font/roboto"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:text="estacion@gasolinera.com"
                         android:textSize="14dp"
@@ -381,8 +464,9 @@
                         android:textSize="13dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/roboto"
                         android:text="Correo Electronico 2"
                         android:textColor="@color/colorPrimary"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -407,7 +491,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
                         android:src="@drawable/ic_customer_mail"
-                        android:tint="@color/colorImg"
+                        android:tint="@color/colorIconIMG"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -418,7 +502,8 @@
                         android:id="@+id/txtMail3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="35dp"
+                        android:fontFamily="@font/roboto"
                         android:layout_marginLeft="16dp"
                         android:textSize="14dp"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -430,8 +515,9 @@
                         android:textSize="13dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="13dp"
+                        android:fontFamily="@font/roboto"
+                        android:layout_marginTop="16dp"
                         android:text="Correo Electronico 3"
                         android:textColor="@color/colorPrimary"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -456,7 +542,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
                         android:src="@drawable/ic_customer_number"
-                        android:tint="@color/colorImg"
+                        android:tint="@color/colorIconIMG"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -467,7 +553,8 @@
                         android:id="@+id/txtNumber1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="35dp"
+                        android:fontFamily="@font/roboto"
                         android:layout_marginLeft="16dp"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:text="6622114589"
@@ -479,9 +566,10 @@
                         android:textSize="13dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="16dp"
                         android:text="Telefono 1"
+                        android:fontFamily="@font/roboto"
                         android:textColor="@color/colorPrimary"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         app:layout_constraintLeft_toRightOf="@+id/imgNumber1"
@@ -505,7 +593,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
                         android:src="@drawable/ic_customer_number"
-                        android:tint="@color/colorImg"
+                        android:tint="@color/colorIconIMG"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -516,8 +604,9 @@
                         android:id="@+id/txtNumber2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="35dp"
                         android:layout_marginLeft="16dp"
+                        android:fontFamily="@font/roboto"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:text="6622114589"
                         android:textSize="14dp"
@@ -528,8 +617,9 @@
                         android:textSize="13dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/roboto"
                         android:text="Telefono 2"
                         android:textColor="@color/colorPrimary"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -553,7 +643,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
                         android:src="@drawable/ic_customer_rfc"
-                        android:tint="@color/colorImg"
+                        android:tint="@color/colorIconIMG"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -562,9 +652,10 @@
                         android:layout_marginRight="9dp"
                         android:paddingLeft="58dp"
                         android:id="@+id/txtRfc"
+                        android:fontFamily="@font/roboto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="35dp"
                         android:layout_marginLeft="16dp"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:text="XAXX010101000"
@@ -576,9 +667,10 @@
                         android:textSize="13dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="40dp"
-                        android:text="Rfc"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="16dp"
+                        android:text="RFC"
+                        android:fontFamily="@font/roboto"
                         android:textColor="@color/colorPrimary"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                         app:layout_constraintLeft_toRightOf="@+id/imgRfc"

@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="gcode.baseproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+   <uses-permission android:name="android.hardware.camera2.full"/>
+
+
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:name=".MyApplication"
@@ -14,13 +23,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ui.image.ImageActivity"></activity>
+        <activity android:name=".ViewPDFActivity"></activity>
+        <activity android:name=".view.ui.image.ImageActivity" />
         <activity
             android:name=".view.ui.account.LoadingActivity"
             android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN"   />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -35,6 +46,22 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.ui.account.LoginActivity" />
+
+        <receiver android:name=".interactors.connection.NetworkConnection" android:enabled="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"></action>
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGE"></action>
+                <action android:name="android.net.wifi.STATE_CHANGE"></action>
+
+            </intent-filter>
+
+
+        </receiver>
+
+
+
+
+
     </application>
 
 </manifest>

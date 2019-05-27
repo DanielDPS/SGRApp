@@ -3,6 +3,7 @@ package gcode.baseproject.interactors.db.entities;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -32,6 +33,7 @@ public class QuestionEntity {
     private  String Fksection;
     @ColumnInfo(name = "description")
     private  String Description;
+    @Nullable
     @ColumnInfo(name = "hallazgo")
     private  String Hallazgo;
     @ColumnInfo(name = "fundament")
@@ -59,7 +61,7 @@ public class QuestionEntity {
 
     @NonNull
     public String getId() {
-        return Id;
+        return Id==null ? null : Id;
     }
 
     public void setId(@NonNull String id) {
@@ -82,11 +84,12 @@ public class QuestionEntity {
         Description = description;
     }
 
+    @Nullable
     public String getHallazgo() {
         return Hallazgo;
     }
 
-    public void setHallazgo(String hallazgo) {
+    public void setHallazgo(@Nullable String hallazgo) {
         Hallazgo = hallazgo;
     }
 

@@ -41,6 +41,64 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
+        <FrameLayout
+            android:visibility="gone"
+            android:layout_marginTop="56dp"
+            android:id="@+id/nodata"
+            android:background="@color/colorPrimaryText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/capaClick"
+                android:layout_marginTop="200dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imgEmpty"
+                    android:src="@drawable/ic_info_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="parent"/>
+
+
+                <TextView
+                    android:id="@+id/format_identifier"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/colorEmptyData"
+                    android:text="No existen
+secciones para mostrar"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgEmpty"/>
+
+
+
+
+            </LinearLayout>
+
+
+
+        </FrameLayout>
+
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#667760</color>
-    <color name="colorPrimaryDark">#374830</color>
+    <color name="colorPrimary">#2e3f28</color>
+    <color name="colorPrimaryDark">#457035 </color>
+    <color name="colorPrimaryDark2">#273522</color>
+    <color name="colorAccent">#868fa4</color>
+    <color name="colorIcon">#9cc53b</color>
     <color name="colorPrimaryLight">#868fa4</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAnswer">#dfe6e9</color>
+    <color name="colorIconIMG">#5c6454</color>
+    <color name="colorDeleteFormatData">#e15f41</color>
+    <color name="colorViewGallery">#9CCC65</color>
+
 
 
     <color name="colorSecondary">#42a5f5</color>
@@ -12,9 +19,15 @@
 
     <color name="colorPrimaryText">#ffffff</color>
     <color name="colorSecondaryText">#000000</color>
+    <color name="colorEmptyData">#636e72</color>
 
     <color name="colorBackground">#d7e4ec</color>
     <color name="colorImg">#819C84</color>
+
+    <!-- Status Colors -->
+    <color name="colorState01">#576574</color>
+    <color name="colorState02">#576574</color>
+    <color name="colorViewPdf">#74b9ff</color>
 
 
     <!-- Progress Bar Colors -->

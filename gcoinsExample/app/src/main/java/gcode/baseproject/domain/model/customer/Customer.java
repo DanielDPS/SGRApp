@@ -1,7 +1,5 @@
 package gcode.baseproject.domain.model.customer;
 import com.google.gson.annotations.SerializedName;
-import org.joda.time.DateTime;
-import java.util.Date;
 
 public class Customer {
 

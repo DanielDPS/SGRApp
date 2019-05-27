@@ -4,6 +4,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 import androidx.appcompat.app.ActionBar;
@@ -12,30 +13,24 @@ import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import gcode.baseproject.R;
 import gcode.baseproject.databinding.ActivityMainBinding;
 import gcode.baseproject.databinding.NavHeaderBinding;
 import gcode.baseproject.databinding.WelcomeFragmentBinding;
 import gcode.baseproject.domain.model.account.Account;
-import gcode.baseproject.domain.model.customer.Customer;
-import gcode.baseproject.domain.model.customer.MyAdapter;
 import gcode.baseproject.domain.model.permissions.AccessLevel;
 import gcode.baseproject.domain.model.permissions.Module;
 import gcode.baseproject.domain.model.permissions.ModuleParameters;
@@ -182,6 +177,15 @@ public class MainActivity extends AppCompatActivity implements
         setupNavigationManager();
         setupMenuBuilder();
         setupModuleFactory();
+
+
+
+        //StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        //StrictMode.setVmPolicy(builder.build());
+
+
+
+
     }
 
     @Override

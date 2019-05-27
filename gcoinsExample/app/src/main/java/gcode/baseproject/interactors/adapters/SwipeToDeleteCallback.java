@@ -2,6 +2,7 @@ package gcode.baseproject.interactors.adapters;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -35,7 +36,7 @@ public abstract class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallba
         intrinsicWidth = deleteIcon.getIntrinsicWidth();
         intrinsicHeight = deleteIcon.getIntrinsicHeight();
         background = new ColorDrawable();
-        backgroundColor = ContextCompat.getColor(context, R.color.colorPrimary);
+        backgroundColor = ContextCompat.getColor(context, R.color.colorDeleteFormatData);
         clearPaint = new Paint();
         clearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
@@ -74,7 +75,7 @@ public abstract class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallba
         int deleteIconRight = itemView.getRight() - deleteIconMargin;
         int deleteIconBottom = deleteIconTop + intrinsicHeight;
 
-        // Draw the delete icon
+         //Draw the delete icon
         deleteIcon.setBounds(deleteIconLeft, deleteIconTop, deleteIconRight, deleteIconBottom);
         deleteIcon.draw(c);
 

@@ -2,18 +2,13 @@ package gcode.baseproject.view.viewmodel.format;
 
 import android.app.Application;
 import android.util.Log;
-
 import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import gcode.baseproject.domain.repository.dataFormat.FormatDataRepository;
 import gcode.baseproject.domain.repository.dataFormat.IFormatDataRepository;
-import gcode.baseproject.interactors.date.CurrentDate;
 import gcode.baseproject.interactors.db.entities.FormatDataEntity;
-import gcode.baseproject.interactors.session.SessionUser;
-import gcode.baseproject.view.ui.format.FormatSectionsFragment;
 import gcode.baseproject.view.viewmodel.general.BaseNetworkViewModel;
 import io.reactivex.Completable;
 import io.reactivex.Single;
@@ -31,8 +26,20 @@ public class FormatDataViewModel extends BaseNetworkViewModel {
         super(application);
         iFormatDataRepository= new FormatDataRepository();
     }
-    public void Update(FormatDataEntity formatDataEntity){
-        iFormatDataRepository.UpdateFormatData(formatDataEntity);
+    public  Integer CheckIFExists(String fkformat,String fkcustomer,String identifier){
+        return iFormatDataRepository.checkIfExistsObject(fkformat,fkcustomer,identifier);
+    }
+
+    public Completable Update(FormatDataEntity formatDataEntity){
+       return  iFormatDataRepository.UpdateFormatData(formatDataEntity);
+    }
+
+
+    public  FormatDataEntity getObjectFormatDataEntityById(String id){
+        return  iFormatDataRepository.getFormatDataById(id);
+    }
+    public  void UpdateFormat(int state01,int state02,String id){
+        iFormatDataRepository.UpdateFormat(state01,state02,id);
     }
 
 
@@ -43,8 +50,16 @@ public class FormatDataViewModel extends BaseNetworkViewModel {
         return iFormatDataRepository.getIdFormatData();
     }
 
+    public  Completable RemoveFormatData(FormatDataEntity formatDataEntity){
+         return  iFormatDataRepository.DeleteFormatData(formatDataEntity);
+    }
     public void AddFormatDataActions(FormatDataEntity formatDataEntity){
-        iFormatDataRepository.AddFormatData(formatDataEntity);
+        TestObserver testObserver= new TestObserver();
+        iFormatDataRepository.AddFormatData(formatDataEntity)
+        .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(testObserver);
+        testObserver.assertNoErrors();
     }
 
 

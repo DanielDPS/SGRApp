@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -35,10 +36,26 @@ import gcode.baseproject.domain.model.question.Question;
     private  Integer Order;
     @ColumnInfo(name = "ismultiple")
     private  String Ismultiple;
+    @ColumnInfo(name = "image")
+    private String Image;
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
+    @Nullable
     @ColumnInfo(name = "multipledescription")
     private  String Multipledescription;
+
+
+    @Nullable
     @ColumnInfo(name =  "ismultipleref")
     private  String Ismultipleref;
+
     @ColumnInfo(name = "edited")
     private String Edited;
 
@@ -61,11 +78,17 @@ import gcode.baseproject.domain.model.question.Question;
     public String getDescription(){return this.Description;}
     public  void setOrder(Integer Order){this.Order=Order;}
     public  Integer getOrder(){return this.Order;}
-    public  void setIsmultiple(String Ismultiple){this.Ismultiple=Ismultiple;}
+
+    public  void setIsmultiple(@Nullable String Ismultiple){this.Ismultiple=Ismultiple;}
+    @Nullable
     public  String getIsmultiple(){return this.Ismultiple;}
-    public  void setMultipledescription(String Multipledescription){this.Multipledescription=Multipledescription;}
+
+    public  void setMultipledescription(@Nullable String Multipledescription){this.Multipledescription=Multipledescription;}
+    @Nullable
     public  String getMultipledescription(){return this.Multipledescription;}
-    public  void setIsmultipleref(String Ismultipleref){this.Ismultipleref =Ismultipleref;}
+
+    public  void setIsmultipleref(@Nullable String Ismultipleref){this.Ismultipleref =Ismultipleref;}
+    @Nullable
     public  String getIsmultipleref(){return this.Ismultipleref;}
 
     public List<Question> getcQuestions() {

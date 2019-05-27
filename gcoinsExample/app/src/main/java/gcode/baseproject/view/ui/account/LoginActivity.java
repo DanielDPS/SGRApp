@@ -1,5 +1,6 @@
 package gcode.baseproject.view.ui.account;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.UnknownHostException;
+
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
@@ -86,6 +89,8 @@ public class LoginActivity extends AppCompatActivity {
         setUpCredentialsViewModel();
         setUpLoadingViewModel();
         setClickListener();
+
+        ActivityCompat.requestPermissions(LoginActivity.this, new String[]{Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 110);
     }
 
 

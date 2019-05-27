@@ -1,5 +1,7 @@
 package gcode.baseproject.interactors.api.customer;
 
+import java.util.List;
+
 import gcode.baseproject.domain.model.customer.CustomerIdentifierResponse;
 import gcode.baseproject.domain.model.customer.CustomerResponse;
 import retrofit2.http.Field;
@@ -19,5 +21,10 @@ public interface CustomerService {
     @POST("datos_formatos/get_identificator")
     @FormUrlEncoded
     Single<CustomerIdentifierResponse> getCustomerIdentifier(@Header("authorization") String authToken, @Field("id_customer") String id);
+
+
+    @POST("datos_formatos/get_identificator")
+    @FormUrlEncoded
+    CustomerIdentifierResponse getCustomerIdentifierAsync(@Header("authorization") String authToken, @Field("id_customer") String id);
 
 }

@@ -36,28 +36,29 @@
 
             <ImageView
                 android:id="@+id/format_img"
-                android:tint="#5c6454"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:tint="@color/colorIconIMG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/ic_format_list"
+                android:src="@drawable/ic_format_icon"
                 />
 
             <TextView
                 android:layout_marginRight="9dp"
-                android:paddingLeft="78dp"
+                android:paddingLeft="60dp"
                 android:id="@+id/format_description"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/roboto"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="3dp"
                 android:layout_marginTop="16dp"
-                android:textColor="@color/colorSecondaryText"
                 android:textSize="14dp"
-                android:text="@{format.CDescription}"
                 android:textStyle="bold"
+                android:text="@{format.CDescription}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 app:layout_constraintLeft_toRightOf="@+id/format_img"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintTop_toBottomOf="parent"/>
@@ -67,7 +68,8 @@
             <View
                 android:id="@+id/separator"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_marginTop="14dp"
+                android:layout_height="1dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

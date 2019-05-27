@@ -4,8 +4,17 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorPrimary</item>
+    </style>
+
+
+    <style name="AppThemeDialogLogout" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <item name="colorAccent">@android:color/transparent</item>
         <item name="colorSecondary">@color/colorPrimary</item>
     </style>
 
@@ -13,6 +22,18 @@
         <item name="android:colorAccent">@color/colorPrimaryLight</item>
         <item name="android:colorActivatedHighlight">@color/colorPrimaryLight</item>
         <item name="android:textColor">@color/colorSecondaryText</item>
+    </style>
+
+    <style name="edittextTheme" parent="Base.Widget.AppCompat.EditText">
+        <item name="android:colorAccent">@color/colorPrimaryLight</item>
+        <item name="android:colorControlActivated">@color/colorProgressBarGreen</item>
+        <item name="android:colorPressedHighlight">@android:color/black</item>
+        <item name="android:strokeColor">@color/colorProgressBarYellow</item>
+        <item name="android:textColor">@color/colorSecondaryText</item>
+    </style>
+
+    <style name="buttonTheme" parent="Widget.MaterialComponents.Button">
+
     </style>
 
 

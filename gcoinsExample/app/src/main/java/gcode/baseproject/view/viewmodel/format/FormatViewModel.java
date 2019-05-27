@@ -1,48 +1,36 @@
 package gcode.baseproject.view.viewmodel.format;
 
 import android.app.Application;
-import android.graphics.Path;
 import android.util.Log;
-import android.widget.Toast;
-
-import java.text.Normalizer;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import gcode.baseproject.domain.model.format.Format;
 import gcode.baseproject.domain.model.formatSection.FormatSection;
 import gcode.baseproject.domain.model.option.Option;
 import gcode.baseproject.domain.model.question.Question;
-import gcode.baseproject.domain.repository.customer.CustomerRepository;
-import gcode.baseproject.domain.repository.customer.ICustomerRepository;
-import gcode.baseproject.domain.repository.dataFormat.FormatDataRepository;
-import gcode.baseproject.domain.repository.dataFormat.IFormatDataRepository;
 import gcode.baseproject.domain.repository.format.FormatRepository;
 import gcode.baseproject.domain.repository.format.IFormatRepository;
 import gcode.baseproject.interactors.db.entities.FormatEntity;
 import gcode.baseproject.interactors.db.entities.FormatSectionEntity;
 import gcode.baseproject.interactors.db.entities.OptionEntity;
 import gcode.baseproject.interactors.db.entities.QuestionEntity;
-import gcode.baseproject.view.ui.general.BaseFragment;
 import gcode.baseproject.view.viewmodel.general.BaseNetworkViewModel;
 import io.reactivex.Completable;
 import io.reactivex.CompletableSource;
 import io.reactivex.Single;
 import io.reactivex.SingleSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableSingleObserver;
-import io.reactivex.observers.TestObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class FormatViewModel extends BaseNetworkViewModel {
 
-    private  final  MutableLiveData<List<FormatSectionEntity>>getFormatSectionEntity =new  MutableLiveData<>();
-    private  final MutableLiveData<List<QuestionEntity>> getQuestionsDB = new MutableLiveData<>();
+    private  MutableLiveData<List<FormatSectionEntity>>getFormatSectionEntity =new  MutableLiveData<>();
+    private   MutableLiveData<List<QuestionEntity>> getQuestionsDB = new MutableLiveData<>();
     private IFormatRepository iFormatRepository;
      private  String update;
     public FormatViewModel(@NonNull Application application) {
@@ -61,6 +49,9 @@ public class FormatViewModel extends BaseNetworkViewModel {
         return formats;
 
     }
+    public FormatSectionEntity getObjectSectionById(String id){
+        return  iFormatRepository.getObjectSectioById(id);
+    }
 
     public Integer getQuestionsCountByIdSection(String id){
         return iFormatRepository.getCountQuestionsByFkSection(id);
@@ -75,11 +66,18 @@ public class FormatViewModel extends BaseNetworkViewModel {
                 });
         return questions;
     }
+    public  List<FormatSectionEntity> getSectionsByFkFormat(String fk){
+        return  iFormatRepository.getListSectionByFkFormat(fk);
+    }
     public  List<FormatEntity> getFormatsDB(){
         return iFormatRepository.getFormatsDB();
     }
 
-    public void UpdateFormats(){
+    public  FormatEntity getObjectFormatByIdFormat(String id){
+        return  iFormatRepository.getObjectFormatById(id);
+    }
+
+    public Completable UpdateFormats(){
         Single<List<Format> > formatsJSON = getFormatsFromAPI();
 
         Completable refreshFormats = formatsJSON.flatMapCompletable(new Function<List<Format>, CompletableSource>() {
@@ -120,9 +118,45 @@ public class FormatViewModel extends BaseNetworkViewModel {
                             formatSectionEntity.setIsmultipleref(formatSection.getIsMultipleReference());
                             formatSectionEntity.setEdited(formatSection.getcEdited());
                             formatSectionEntity.setOrder(formatSection.getOrder());
+                            formatSectionEntity.setImage(formatSection.getcImage());
 
                             if (iFormatRepository.checkIfFormatSectionsExists(formatSectionEntity.getId())){
                                 iFormatRepository.UpdateFormatSectionDB(formatSectionEntity);
+
+                                try {
+                                    formatSectionEntity.setcQuestions(getQuestions(formatSection.getId()).toFuture().get());
+
+                                    for (Question question :formatSectionEntity.getcQuestions()){
+                                        QuestionEntity questionEntity= new QuestionEntity();
+                                        questionEntity.setId(question.getId());
+                                        questionEntity.setFksection(formatSectionEntity.getId());
+                                        questionEntity.setDescription(question.getDescription());
+                                        questionEntity.setHallazgo(question.getHallazgo());
+                                        questionEntity.setFundament(question.getFundament());
+                                        questionEntity.setCritical(question.isCritical());
+                                        questionEntity.setFieldtype(question.getFieldType());
+                                        questionEntity.setOrder(0);
+                                        questionEntity.setImage(question.getImage());
+                                        questionEntity.setEdited(question.getEdited());
+                                        iFormatRepository.UpdateQuestionDB(questionEntity);
+                                        questionEntity.setOptionsList(question.getOptions());
+                                        for(Option option :questionEntity.getOptionsList()){
+                                            OptionEntity optionEntity = new OptionEntity();
+                                            optionEntity.setId(option.getId());
+                                            optionEntity.setFkquestion(questionEntity.getId());
+                                            optionEntity.setDescription(option.getDescription());
+                                            iFormatRepository.UpdateOptionDB(optionEntity);
+                                        }
+
+                                    }
+
+
+                                } catch (ExecutionException e) {
+                                    e.printStackTrace();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
                             }else {
                                 iFormatRepository.AddFormatSectionDB(formatSectionEntity);
                                 try {
@@ -169,18 +203,21 @@ public class FormatViewModel extends BaseNetworkViewModel {
             }
         });
 
-        TestObserver testObserver = new TestObserver();
+        return  refreshFormats;
 
-        refreshFormats.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(testObserver);
-        testObserver.assertNoErrors();
-
-
+    }
+    public  void ClearSectionsByFkFormat(LifecycleOwner owner){
+        if (getFormatSectionEntity != null){
+            getFormatSectionEntity.removeObservers(owner);
+            getFormatSectionEntity = null;
+        }
     }
 
     public void LoadSections(String idformat){
-        if (getFormatSectionEntity.getValue() == null){
+        if (getFormatSectionEntity == null){
+
+            getFormatSectionEntity= new MutableLiveData<>();
+        }
             Single<List<FormatSectionEntity> > entities = iFormatRepository.getFomatSectionsDB(idformat)
                     .map(new Function<List<FormatSectionEntity>, List<FormatSectionEntity>>() {
                         @Override
@@ -191,10 +228,18 @@ public class FormatViewModel extends BaseNetworkViewModel {
             entities.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(getObservableFormatSections());
+
+    }
+    public void ClearQuestions(LifecycleOwner owner){
+        if (getQuestionsDB != null){
+            getQuestionsDB.removeObservers(owner);
+            getQuestionsDB= null;
         }
     }
     public void LoadQuestionsDB(String id){
-        if (getQuestionsDB.getValue()== null){
+        if (getQuestionsDB== null){
+            getQuestionsDB= new MutableLiveData<>();
+        }
             Single<List<QuestionEntity>> questions = iFormatRepository.getQuestionsByIdSection(id)
                     .map(new Function<List<QuestionEntity>, List<QuestionEntity>>() {
                         @Override
@@ -206,7 +251,7 @@ public class FormatViewModel extends BaseNetworkViewModel {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(getObservableQuestionsDB());
 
-         }
+
 
     }
     private  DisposableSingleObserver<List<QuestionEntity>> getObservableQuestionsDB(){
@@ -223,12 +268,18 @@ public class FormatViewModel extends BaseNetworkViewModel {
             }
         };
     }
+    public List<OptionEntity> getOptionsListByFkQuestion(String fk){
+        return  iFormatRepository.getOptionsByFKQuestion(fk);
+    }
+    public  List<QuestionEntity> getQuestionsListByFkSection(String id){
+        return  iFormatRepository.getListQuestionsByFkSection(id);
+    }
     private DisposableSingleObserver<List<FormatSectionEntity>> getObservableFormatSections() {
         return new DisposableSingleObserver<List<FormatSectionEntity>>() {
 
             @Override
             public void onSuccess(List<FormatSectionEntity> formatSectionEntities) {
-                getFormatSectionEntity.setValue(formatSectionEntities);
+                getFormatSectionEntity.postValue(formatSectionEntities);
             }
 
             @Override

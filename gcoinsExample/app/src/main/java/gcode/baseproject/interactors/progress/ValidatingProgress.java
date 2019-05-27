@@ -36,35 +36,65 @@ public class ValidatingProgress {
             @Override
             public void run() {
 
-                while(progressStatus < 70){
-                    progressStatus+=1;
 
-                    try{
+
+
+                while (progressStatus <=70  ) {
+
+
+                    try {
                         Thread.sleep(20);
 
-                    }catch(Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
+
 
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
                             progressDialog.setProgress(progressStatus);
-                            if (progressStatus == 70){
-                                progressDialog.dismiss();
-                                recyclerView.setHasFixedSize(true);
-                                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                                recyclerView.setAdapter(adapter);
+                            if (progressStatus ==70) {
+
+                                    progressDialog.dismiss();
+                                    recyclerView.setHasFixedSize(true);
+                                    recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                                    recyclerView.setAdapter(adapter);
 
                             }
                         }
                     });
+
 
                 }
             }
         }).start();
 
     }
+    public  void CloseProgressDialog(){
+        progressDialog.dismiss();
+    }
+
+    /*
+     handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            //progressDialog.setProgress(progressStatus);
+                            if (recyclerView.getAdapter() != null){
+
+
+                                if (recyclerView.getAdapter().getItemCount() !=0){
+                                    progressDialog.dismiss();
+                                    recyclerView.setHasFixedSize(true);
+                                    recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                                    recyclerView.setAdapter(adapter);
+                                }
+
+
+                            }
+                        }
+                    });
+     */
     public int getProgressStatus(){
         return this.progressStatus;
     }

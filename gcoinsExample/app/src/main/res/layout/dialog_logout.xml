@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+      >
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLeave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salir"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

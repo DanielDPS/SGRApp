@@ -31,6 +31,8 @@
     <string name="exit_dialog_message">¿Estas seguro que deseas salir de la aplicación?</string>
     <string name="exit_dialog_ok">Aceptar</string>
     <string name="exit_dialog_cancel">Cancelar</string>
+    <string name="message_delete">¿Estas seguro que deseas eliminar la inspeccion seleccionada?</string>
+    <string name="message_delete_evidence">¿Estas seguro que deseas eliminar la imagen seleccionada?</string>
 
     <!-- Login -->
     <string name="login_logo_description">gCovi</string>
@@ -53,7 +55,7 @@
     <!-- Log Out Exceptions -->
     <string name="account_session_expire">La sesión actual ha expirado</string>
     <string name="account_session_double">Se ha iniciado sesión en otro dispositivo</string>
-    <string name="app_name">gCoins App</string>
+    <string name="app_name">SGR</string>
 
 
     <string-array name="dialog_multi_choice_array">

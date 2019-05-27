@@ -1,6 +1,7 @@
 package gcode.baseproject.view.viewmodel.Customer;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -23,7 +24,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 import gcode.baseproject.R;
+import gcode.baseproject.databinding.FormatDataModuleFragmentBinding;
 import gcode.baseproject.domain.model.customer.Customer;
+import gcode.baseproject.domain.model.customer.CustomerIdentifierResponse;
 import gcode.baseproject.domain.repository.customer.CustomerRepository;
 import gcode.baseproject.domain.repository.customer.ICustomerRepository;
 import gcode.baseproject.interactors.db.entities.CustomerEntity;
@@ -37,6 +40,7 @@ import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.SingleSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.internal.operators.completable.CompletableFromUnsafeSource;
@@ -52,6 +56,7 @@ public  class CustomerViewModel extends BaseNetworkViewModel {
     private   MutableLiveData<String> getIdentifier  = new MutableLiveData<>();
      private ICustomerRepository iCustomerRepository;
      private   String update;
+
       public CustomerViewModel(@NonNull Application application){
         super(application);
         iCustomerRepository= new CustomerRepository();
@@ -83,7 +88,7 @@ public  class CustomerViewModel extends BaseNetworkViewModel {
             return iCustomerRepository.getCustomersDB();
     }
 
-    public  void UpdateData() {
+    public  Completable UpdateData() {
 
             Single<List<Customer>> customersfromJSONwithLastUpdate = getCustomersFromAPI();
 
@@ -133,12 +138,7 @@ public  class CustomerViewModel extends BaseNetworkViewModel {
             });
 
 
-            TestObserver testObserver = new TestObserver();
-
-            addCustomersToDB.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(testObserver);
-            testObserver.assertNoErrors();
+           return  addCustomersToDB;
 
 
 
@@ -247,5 +247,48 @@ public  class CustomerViewModel extends BaseNetworkViewModel {
     }
     public MutableLiveData<String> getGetIdentifier() {
         return getIdentifier;
+    }
+
+
+    public void getIdentifierObject(final String idCustomer, final FormatDataModuleFragmentBinding binding){
+          Single<String> token = getSessionManager().getToken()
+                  .map(new Function<String, String>() {
+                      @Override
+                      public String apply(String token) throws Exception {
+                          return token;
+                      }
+                  });
+          Completable getIdentifier= token.flatMapCompletable(new Function<String, CompletableSource>() {
+              @Override
+              public CompletableSource apply(final String token) throws Exception {
+                  return Completable.fromRunnable(new Runnable() {
+                      @Override
+                      public void run() {
+                              iCustomerRepository.getIdentifier(token,idCustomer)
+                                      .subscribeOn(Schedulers.io())
+                                      .observeOn(AndroidSchedulers.mainThread())
+                                      .subscribe(new SingleObserver<String>() {
+                                          @Override
+                                          public void onSubscribe(Disposable d) {
+                                          }
+                                          @Override
+                                          public void onSuccess(String identifier) {
+                                              binding.txtIdentifier.setText(identifier);
+                                          }
+
+                                          @Override
+                                          public void onError(Throwable e) {
+                                              e.printStackTrace();
+                                              Log.e("TAG4",e.getLocalizedMessage());
+                                          }
+                                      });
+                             //binding.txtIdentifier.setText(iCustomerRepository.GetIdentifierAsync(token,idCustomer).getIdentifier());
+                      }
+                  });
+              }
+          });
+          getIdentifier.subscribeOn(Schedulers.io())
+                  .observeOn(AndroidSchedulers.mainThread())
+                  .subscribe();
     }
 }

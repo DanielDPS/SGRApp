@@ -1,5 +1,7 @@
 package gcode.baseproject.domain.repository.customer;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -24,8 +26,7 @@ public class CustomerRepository implements  ICustomerRepository {
 
     private CustomerService customerService;
     private CustomerDao customerDao;
-
-    public  CustomerRepository(){
+     public  CustomerRepository( ){
         customerService = NetworkManager.getInstance().create(CustomerService.class);
         customerDao = ApplicationDatabase.getDatabase().getCustomerDao();
 
@@ -59,7 +60,7 @@ public class CustomerRepository implements  ICustomerRepository {
     public List<CustomerEntity> getCustomersDB()   {
         GetDataAsyncTask task  = new GetDataAsyncTask(customerDao);
         try {
-            return task.execute().get();
+             task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -124,6 +125,8 @@ public class CustomerRepository implements  ICustomerRepository {
 
     @Override
     public Single<String> getIdentifier(String token, String id) {
+
+
         return customerService.getCustomerIdentifier(token,id)
                 .map(new Function<CustomerIdentifierResponse, String>() {
                     @Override
@@ -145,6 +148,19 @@ public class CustomerRepository implements  ICustomerRepository {
         }
         return task.getCustomerEntity();
 
+    }
+
+    @Override
+    public CustomerIdentifierResponse GetIdentifierAsync(String token, String idCustomer) {
+         GetIdentifier task = new GetIdentifier(customerService,token,idCustomer);
+        try {
+            task.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return  task.getIdentifier();
     }
 
 

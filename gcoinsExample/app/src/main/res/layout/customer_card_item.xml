@@ -35,10 +35,11 @@
 
             <ImageView
                 android:id="@+id/customer_img"
-                 android:layout_width="60dp"
-                android:layout_height="60dp"
+                 android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_customer_identifier"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                   />
@@ -49,11 +50,12 @@
                 android:layout_height="wrap_content"
                  android:layout_marginRight="9dp"
                 android:paddingLeft="82dp"
+
                  android:text="@{customer.CBusinessName}"
                 android:layout_marginTop="16dp"
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="13dp"
-                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
                 app:layout_constraintLeft_toRightOf="@+id/customer_img"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,8 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="4dp"
-                android:text="@{customer.CIdentifier}"
+                android:text="@{customer.CCreationPermission}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 app:layout_constraintLeft_toRightOf="@+id/customer_img"
                 app:layout_constraintTop_toBottomOf="@+id/business_Name"
@@ -76,7 +77,7 @@
             <View
                 android:id="@+id/separator"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="1dp"
                 android:background="@color/colorPrimary"
                 android:layout_marginTop="12dp"
                 app:layout_constraintLeft_toLeftOf="parent"

@@ -9,13 +9,7 @@
         android:orderInCategory="100"
         app:showAsAction="always">
     </item>
-    <item
-        android:id="@+id/Format_data_view_pdf"
-        android:title="Ver PDF"
-        android:icon="@drawable/ic_view_pdf"
-        android:orderInCategory="100"
-        app:showAsAction="always">
-    </item>
+
     <item
         android:id="@+id/Format_data_add"
         android:title="Ver PDF"

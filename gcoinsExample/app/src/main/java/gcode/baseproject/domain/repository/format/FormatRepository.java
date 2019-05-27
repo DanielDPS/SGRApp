@@ -94,6 +94,20 @@ public class FormatRepository implements  IFormatRepository{
         return task.getFormatEntities();
     }
 
+    @Override
+    public FormatEntity getObjectFormatById(String id) {
+        GetObjectFormatAsyncTask task = new GetObjectFormatAsyncTask(formatDao,id);
+
+        try {
+            task.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return  task.getFormat();
+    }
+
 
     @Override
     public Boolean checkIfFormatsExists(String id) {
@@ -136,6 +150,33 @@ public class FormatRepository implements  IFormatRepository{
     @Override
     public Boolean checkIfFormatSectionsExists(String id) {
         return formatSectionDao.getCountFormatSections(id) > 0;
+    }
+
+    @Override
+    public FormatSectionEntity getObjectSectioById(String id) {
+        GetObjectSectionByIdAsyncTask task = new GetObjectSectionByIdAsyncTask(formatSectionDao,id);
+
+        try {
+            task.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return  task.getFormatSectionEntity();
+    }
+
+    @Override
+    public List<FormatSectionEntity> getListSectionByFkFormat(String fk) {
+        GetListSectionByFkFormatAsyncTask task= new GetListSectionByFkFormatAsyncTask(formatSectionDao,fk);
+        try {
+            task.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return  task.getSectionEntityList();
     }
 
     @Override
@@ -184,6 +225,18 @@ public class FormatRepository implements  IFormatRepository{
         return task.getTotal();
     }
 
+    @Override
+    public List<QuestionEntity> getListQuestionsByFkSection(String fk) {
+        GetListQuestionsByFkSectionAyncTask task = new GetListQuestionsByFkSectionAyncTask(questionDao,fk);
+        try {
+            task.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return  task.getList();
+    }
 
 
     /** Questions **/
@@ -192,6 +245,24 @@ public class FormatRepository implements  IFormatRepository{
     @Override
     public void AddOptionDB(OptionEntity optionEntity) {
         optionDao.AddOption(optionEntity);
+    }
+
+    @Override
+    public void UpdateOptionDB(OptionEntity optionEntity) {
+        optionDao.UpdateOption(optionEntity);
+    }
+
+    @Override
+    public List<OptionEntity> getOptionsByFKQuestion(String fk) {
+        GetOptionsListByFkQuesitonAsyncTask task = new GetOptionsListByFkQuesitonAsyncTask(optionDao,fk);
+        try {
+            task.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return  task.getOptions();
     }
 
     /** OPTIONS **/

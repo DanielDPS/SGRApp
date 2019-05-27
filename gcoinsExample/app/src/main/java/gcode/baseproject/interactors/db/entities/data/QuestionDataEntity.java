@@ -2,6 +2,8 @@ package gcode.baseproject.interactors.db.entities.data;
 
  import androidx.annotation.IntDef;
  import androidx.annotation.NonNull;
+ import androidx.annotation.Nullable;
+ import androidx.databinding.ObservableField;
  import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -53,8 +55,10 @@ public class QuestionDataEntity {
     private  String Fkquestion;
     @ColumnInfo(name = "fkOption")
     private String Fkoption;
+    @Nullable
     @ColumnInfo(name = "textQuestion")
     private String TextQuestion;
+    @Nullable
     @ColumnInfo(name = "observation")
     private String Observation;
     @ColumnInfo(name = "edited")
@@ -110,19 +114,21 @@ public class QuestionDataEntity {
         Fkoption = fkoption;
     }
 
+    @Nullable
     public String getTextQuestion() {
         return TextQuestion;
     }
 
-    public void setTextQuestion(String textQuestion) {
+    public void setTextQuestion(@Nullable String textQuestion) {
         TextQuestion = textQuestion;
     }
 
+    @Nullable
     public String getObservation() {
-        return Observation;
+        return Observation==null?"(sin observacion)": Observation;
     }
 
-    public void setObservation(String observation) {
+    public void setObservation(@Nullable String observation) {
         Observation = observation;
     }
 

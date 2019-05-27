@@ -21,7 +21,7 @@ public class GalleryAdapter  extends  RecyclerView.Adapter<GalleryAdapter.Galler
 
     private LayoutInflater inflater;
     private List<EvidenceDataEntity> listEvidence;
-    public GalleryAdapter(List<EvidenceDataEntity> evidenceDataEntities){
+     public GalleryAdapter(List<EvidenceDataEntity> evidenceDataEntities){
         this.listEvidence = evidenceDataEntities;
     }
 
@@ -35,13 +35,16 @@ public class GalleryAdapter  extends  RecyclerView.Adapter<GalleryAdapter.Galler
         return new GalleryViewHolder(binding);
     }
 
+     public EvidenceDataEntity getItemByPosition(int position) {
+         return   listEvidence.get(position);
+    }
+
     @Override
     public void onBindViewHolder(@NonNull GalleryViewHolder holder, int position) {
         EvidenceDataEntity evidenceDataEntity = listEvidence.get(position);
-        Bitmap bitmap = DecodeImage.decode_image(new File(evidenceDataEntity.getImageUrl()));
-        String ttitle = "Fecha y hora: "+evidenceDataEntity.getCreation();
-        holder.binding.txtTitle.setText(ttitle);
+        Bitmap bitmap = DecodeImage.decode_image(new File(evidenceDataEntity.getImageUrl()),500);
         holder.binding.imgGallery.setImageBitmap(bitmap);
+        holder.binding.imgDate.setText("Fecha de captura: "+evidenceDataEntity.getCreation());
 
     }
 
